@@ -9,12 +9,13 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.json.JSONObject;
 
-import com.gpslistener.models.GeoCodingAPI_Response;
-
+import com.gpslistener.AsyncResponse;
 import android.os.AsyncTask;
 
 public class HttpFetchLocationTask extends AsyncTask<String, Void, JSONObject> {
 
+	public AsyncResponse delegate = null;
+	
 	@Override
 	protected JSONObject doInBackground(String... params)
 	{
@@ -38,7 +39,7 @@ public class HttpFetchLocationTask extends AsyncTask<String, Void, JSONObject> {
 	@Override
 	protected void onPostExecute(JSONObject jsonObject)
 	{
-		GeoCodingAPI_Response response = JSONParser.parseJSON(jsonObject);
+		delegate.onTaskCompleted(JSONParser.parseJSON(jsonObject));
+		//GeoCodingAPI_Response response = JSONParser.parseJSON(jsonObject);
 	}
-
 }
