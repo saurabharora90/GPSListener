@@ -8,7 +8,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 
-import com.gpslistener.models.PlacesAPI_Response;
+import com.gpslistener.models.GeoCodingAPI_Response;
 
 import android.os.AsyncTask;
 
@@ -38,7 +38,7 @@ public class HttpFetchLocationTask extends AsyncTask<String, Void, String> {
 	@Override
 	protected void onPostExecute(String results)
 	{
-		PlacesAPI_Response response = JSONParser.parseJSON(results);
+		GeoCodingAPI_Response response = JSONParser.parseJSON(results);
 	}
 
 }

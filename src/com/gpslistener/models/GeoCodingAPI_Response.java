@@ -1,11 +1,11 @@
 package com.gpslistener.models;
 
-public class PlacesAPI_Response 
+public class GeoCodingAPI_Response 
 {
 	
 	private String latitude;
 	private String longitude;
-	private String name;
+	private String formatted_address;
 	
 	/**
 	 * @return the latitude
@@ -35,12 +35,12 @@ public class PlacesAPI_Response
 	 * @return the name
 	 */
 	public String getName() {
-		return name;
+		return formatted_address;
 	}
 	/**
 	 * @param name the name to set
 	 */
 	public void setName(String name) {
-		this.name = name;
+		this.formatted_address = name;
 	}
 }

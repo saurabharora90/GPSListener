@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 
 import org.apache.http.HttpEntity;
 
-import com.gpslistener.models.PlacesAPI_Response;
+import com.gpslistener.models.GeoCodingAPI_Response;
 
 public class JSONParser 
 {
@@ -31,9 +31,9 @@ public class JSONParser
 		}
 	}
 	
-	public static PlacesAPI_Response parseJSON(String jsonString)
+	public static GeoCodingAPI_Response parseJSON(String jsonString)
 	{
-		PlacesAPI_Response response = new PlacesAPI_Response();
+		GeoCodingAPI_Response response = new GeoCodingAPI_Response();
 		return response;
 	}
 
