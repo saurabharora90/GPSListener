@@ -1,4 +1,4 @@
-package com.gpslistener.database;
+package com.gpslistener.models;
 
 import android.provider.BaseColumns;
 

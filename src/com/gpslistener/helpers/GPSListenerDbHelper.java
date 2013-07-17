@@ -1,4 +1,6 @@
-package com.gpslistener.database;
+package com.gpslistener.helpers;
+
+import com.gpslistener.models.GPSListenerContract;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -9,7 +11,8 @@ public class GPSListenerDbHelper extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "GPSListenerDatabase";
 	private static final int DATABASE_VERSION = 1;
 	
-	public GPSListenerDbHelper(Context context) {
+	public GPSListenerDbHelper(Context context) 
+	{
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 

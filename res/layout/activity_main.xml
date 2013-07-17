@@ -15,12 +15,4 @@
         android:layout_height="wrap_content"
         android:id="@+id/longitudeText"/>
     
-    <EditText 
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:minLines="10"
-        android:maxLines="18"
-        android:inputType="none"
-        android:id="@+id/PlaceText"/>
-    
 </LinearLayout>
