@@ -7,20 +7,21 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
+import org.json.JSONObject;
 
 import com.gpslistener.models.GeoCodingAPI_Response;
 
 import android.os.AsyncTask;
 
-public class HttpFetchLocationTask extends AsyncTask<String, Void, String> {
+public class HttpFetchLocationTask extends AsyncTask<String, Void, JSONObject> {
 
 	@Override
-	protected String doInBackground(String... params)
+	protected JSONObject doInBackground(String... params)
 	{
 		HttpClient httpClient = new DefaultHttpClient();
 		HttpContext localContext = new BasicHttpContext();
 		HttpGet httpGet = new HttpGet(params[0]);
-		String json = null;
+		JSONObject json = null;
 		try 
 		{
 			HttpResponse response = httpClient.execute(httpGet, localContext);
@@ -29,16 +30,15 @@ public class HttpFetchLocationTask extends AsyncTask<String, Void, String> {
 		} 
 		catch (Exception e) 
 		{
-			return e.getLocalizedMessage();
 		}
 		
 		return json;
 	}
 	
 	@Override
-	protected void onPostExecute(String results)
+	protected void onPostExecute(JSONObject jsonObject)
 	{
-		GeoCodingAPI_Response response = JSONParser.parseJSON(results);
+		GeoCodingAPI_Response response = JSONParser.parseJSON(jsonObject);
 	}
 
 }
