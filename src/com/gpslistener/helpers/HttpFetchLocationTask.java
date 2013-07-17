@@ -8,6 +8,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 
+import com.gpslistener.models.PlacesAPI_Response;
+
 import android.os.AsyncTask;
 
 public class HttpFetchLocationTask extends AsyncTask<String, Void, String> {
@@ -18,24 +20,25 @@ public class HttpFetchLocationTask extends AsyncTask<String, Void, String> {
 		HttpClient httpClient = new DefaultHttpClient();
 		HttpContext localContext = new BasicHttpContext();
 		HttpGet httpGet = new HttpGet(params[0]);
-		String text = null;
+		String json = null;
 		try 
 		{
 			HttpResponse response = httpClient.execute(httpGet, localContext);
 			HttpEntity entity = response.getEntity();
+			json = JSONParser.getJSONFromEntity(entity);
 		} 
 		catch (Exception e) 
 		{
 			return e.getLocalizedMessage();
 		}
 		
-		return text;
+		return json;
 	}
 	
 	@Override
 	protected void onPostExecute(String results)
 	{
-		
+		PlacesAPI_Response response = JSONParser.parseJSON(results);
 	}
 
 }

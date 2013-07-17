@@ -1,27 +1,14 @@
 package com.gpslistener;
 
-import java.io.IOException;
-import java.io.InputStream;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.protocol.BasicHttpContext;
-import org.apache.http.protocol.HttpContext;
-
 import com.gpslistener.helpers.Constants;
+import com.gpslistener.helpers.HttpFetchLocationTask;
 
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Intent;
 import android.view.Menu;
-import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
@@ -74,7 +61,7 @@ public class MainActivity extends Activity {
 			Intent intent = new Intent(getApplicationContext(), FetchLocationService.class);
 			intent.putExtra("com.gpslistener.locationData", locationDataBundle);
 			startService(intent);*/
-			new LongRunningGetIO().execute(Constants.getNEARBY_SEARCH_URI(lat, lon, "false", 10));
+			new HttpFetchLocationTask().execute(Constants.getNEARBY_SEARCH_URI(lat, lon, "false", 100));
 		}
 
 		@Override
@@ -96,62 +83,4 @@ public class MainActivity extends Activity {
 		}
 
 	}
-
-	private class LongRunningGetIO extends AsyncTask <String, Void, String> {
-		protected String getASCIIContentFromEntity(HttpEntity entity) throws IllegalStateException, IOException {
-		InputStream in = entity.getContent();
-
-
-		StringBuffer out = new StringBuffer();
-		int n = 1;
-		while (n>0) {
-		byte[] b = new byte[4096];
-		n =  in.read(b);
-
-
-		if (n>0) out.append(new String(b, 0, n));
-		}
-
-
-		return out.toString();
-		}
-
-
-		@Override
-
-
-		protected String doInBackground(String... params) {
-		HttpClient httpClient = new DefaultHttpClient();
-		HttpContext localContext = new BasicHttpContext();
-		HttpGet httpGet = new HttpGet(params[0]);
-		String text = null;
-		try {
-		HttpResponse response = httpClient.execute(httpGet, localContext);
-
-
-		HttpEntity entity = response.getEntity();
-
-
-		text = getASCIIContentFromEntity(entity);
-
-
-		} catch (Exception e) {
-		return e.getLocalizedMessage();
-		}
-
-
-		return text;
-		}
-
-
-		protected void onPostExecute(String results) 
-		{
-			if (results!=null) 
-			{
-				EditText et = (EditText)findViewById(R.id.PlaceText);
-				et.setText(results);
-			}
-		}
-	}
-
 }
