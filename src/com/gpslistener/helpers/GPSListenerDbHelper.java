@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class GPSListenerDbHelper extends SQLiteOpenHelper {
 	
-	private static final String DATABASE_NAME = "GPSListenerDatabase";
+	private static final String DATABASE_NAME = "GPSListenerDatabase.db";
 	private static final int DATABASE_VERSION = 1;
 	
 	public GPSListenerDbHelper(Context context) 

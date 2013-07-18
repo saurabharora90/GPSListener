@@ -1,21 +1,15 @@
 package com.gpslistener;
 
-import java.sql.Date;
-import java.sql.Timestamp;
-
 import com.gpslistener.helpers.Constants;
+import com.gpslistener.helpers.DatabaseTask;
 import com.gpslistener.helpers.GPSListenerDbHelper;
 import com.gpslistener.helpers.HttpFetchLocationTask;
-import com.gpslistener.models.GPSListenerContract;
-import com.gpslistener.models.GeoCodingAPI_Response;
 
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.ContentValues;
-import android.database.sqlite.SQLiteDatabase;
 import android.view.Menu;
 import android.widget.TextView;
 
@@ -55,17 +49,11 @@ public class MainActivity extends Activity implements AsyncResponse {
 	}
 	
 	@Override
-	public void onTaskCompleted(Object values) 
+	public void onTaskCompleted(Object value) 
 	{
-		GeoCodingAPI_Response response = (GeoCodingAPI_Response) values;
-		//Add to database
 		GPSListenerDbHelper dbHelper = new GPSListenerDbHelper(getApplicationContext());
-		SQLiteDatabase mDatabase = dbHelper.getWritableDatabase();
-		ContentValues vContentValues = new ContentValues();
-		vContentValues.put(GPSListenerContract.StoredLocations.COLUMN_NAME_Latitude, response.getLatitude());
-		vContentValues.put(GPSListenerContract.StoredLocations.COLUMN_NAME_Longitude, response.getLongitude());
-		vContentValues.put(GPSListenerContract.StoredLocations.COLUMN_NAME_LocationDetail, response.getName());
-		mDatabase.insert(GPSListenerContract.StoredLocations.Table_Name, "null", vContentValues);
+		Object params[] = {value, dbHelper};
+		new DatabaseTask().execute(params);
 	}
 	
 	public class gpslistenerLocationListener implements LocationListener {
