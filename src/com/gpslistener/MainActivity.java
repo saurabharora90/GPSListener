@@ -11,6 +11,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 
 public class MainActivity extends Activity implements AsyncResponse, OnDateSelectedListener {
@@ -58,7 +59,9 @@ public class MainActivity extends Activity implements AsyncResponse, OnDateSelec
 	
 	public void onDateSelected(String selectedDate)
 	{
-		
+		Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
+		intent.putExtra("date", selectedDate);
+		startActivity(intent);
 	}
 	
 	public class gpslistenerLocationListener implements LocationListener {
@@ -79,19 +82,16 @@ public class MainActivity extends Activity implements AsyncResponse, OnDateSelec
 
 		@Override
 		public void onProviderDisabled(String provider) {
-			// TODO Auto-generated method stub
 
 		}
 
 		@Override
 		public void onProviderEnabled(String provider) {
-			// TODO Auto-generated method stub
 
 		}
 
 		@Override
 		public void onStatusChanged(String provider, int status, Bundle extras) {
-			// TODO Auto-generated method stub
 
 		}
 
