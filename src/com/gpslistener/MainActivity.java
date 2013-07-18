@@ -40,7 +40,13 @@ public class MainActivity extends Activity implements AsyncResponse, OnDateSelec
 	@Override
 	public void onResume() {
 	    super.onResume();  // Always call the superclass method first
-	    manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 50, listener);
+	    
+	    if(manager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)){
+	    	manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 50, listener);
+	    }
+	    else if(manager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+	    	manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 50, listener);
+	    }
 	}
 	
 	@Override
