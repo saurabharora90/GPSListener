@@ -11,8 +11,6 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
-import android.widget.ListView;
-import android.widget.TextView;
 
 public class MainActivity extends Activity implements AsyncResponse {
 	
