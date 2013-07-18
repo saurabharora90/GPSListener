@@ -4,15 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity" >
-
-    <TextView 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/latitudeText"/>
     
-    <TextView 
+    <fragment 
+        android:name="com.gpslistener.fragments.ShowDateFragment"
+        android:id ="@+id/dateFragement"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/longitudeText"/>
-    
+        android:layout_height="wrap_content" />
+        
 </LinearLayout>

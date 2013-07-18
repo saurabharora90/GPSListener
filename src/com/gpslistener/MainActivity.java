@@ -11,6 +11,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class MainActivity extends Activity implements AsyncResponse {
@@ -63,12 +64,6 @@ public class MainActivity extends Activity implements AsyncResponse {
 			double lat = location.getLatitude();
 			double lon = location.getLongitude();
 			
-			TextView textLat = (TextView)findViewById(R.id.latitudeText);
-			textLat.setText(String.valueOf(lat));
-			
-			TextView textLon = (TextView)findViewById(R.id.longitudeText);
-			textLon.setText(String.valueOf(lon));
-			
 			/*Bundle locationDataBundle = new Bundle();
 			locationDataBundle.putDouble("com.gpslistener.locationData.latitude", lat);
 			locationDataBundle.putDouble("com.gpslistener.locationData.longtitude", lon);
@@ -97,7 +92,5 @@ public class MainActivity extends Activity implements AsyncResponse {
 		}
 
 	}
-
-
 
 }
