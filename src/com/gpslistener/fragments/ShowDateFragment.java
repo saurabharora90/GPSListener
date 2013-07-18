@@ -4,6 +4,7 @@ import com.gpslistener.R;
 import com.gpslistener.helpers.GPSListenerDbHelper;
 import com.gpslistener.models.GPSListenerContract;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,6 +13,8 @@ import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 /**
@@ -20,9 +23,16 @@ import android.widget.ListView;
  */
 public class ShowDateFragment extends Fragment {
 
+	OnDateSelectedListener mListener;
+	
 	public ShowDateFragment() {
 		// Required empty public constructor
 	}
+	
+	// Container Activity must implement this interface
+    public interface OnDateSelectedListener {
+        public void onDateSelected(String selectedDate);
+    }
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,7 +49,32 @@ public class ShowDateFragment extends Fragment {
 	    SimpleCursorAdapter cursorAdapter = new SimpleCursorAdapter(getActivity(), android.R.layout.simple_list_item_1, cursor, new String[] {GPSListenerContract.StoredLocations.COLUMN_NAME_DATE_STRING}, new int [] {android.R.id.text1}, 0);
 	    ListView myListView = (ListView) view.findViewById(R.id.dateListview);
 	    myListView.setAdapter(cursorAdapter);
+	    
+	    myListView.setOnItemClickListener(new OnItemClickListener()
+	    {
+	        @Override 
+	        public void onItemClick(AdapterView<?> list, View view,int position, long id)
+	        { 
+	        	String selectedDate = null;
+	        	Cursor cursor = (Cursor) list.getItemAtPosition(position);
+	        	selectedDate = cursor.getString(cursor.getColumnIndex("Date"));
+	        	mListener.onDateSelected(selectedDate);
+	        }
+	    });
 	    return view;
 	}
-
+	
+	@Override
+	public void onAttach(Activity activity) 
+	{
+        super.onAttach(activity);
+        try 
+        {
+            mListener = (OnDateSelectedListener) activity;
+        } 
+        catch (ClassCastException e) 
+        {
+            throw new ClassCastException(activity.toString() + " must implement OnDateSelectedListener");
+        }
+	}
 }

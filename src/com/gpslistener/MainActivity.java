@@ -1,5 +1,6 @@
 package com.gpslistener;
 
+import com.gpslistener.fragments.ShowDateFragment.OnDateSelectedListener;
 import com.gpslistener.helpers.Constants;
 import com.gpslistener.helpers.DatabaseTask;
 import com.gpslistener.helpers.GPSListenerDbHelper;
@@ -12,7 +13,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
-public class MainActivity extends Activity implements AsyncResponse {
+public class MainActivity extends Activity implements AsyncResponse, OnDateSelectedListener {
 	
 	private LocationManager manager;
 	private gpslistenerLocationListener listener = new gpslistenerLocationListener();
@@ -53,6 +54,11 @@ public class MainActivity extends Activity implements AsyncResponse {
 		GPSListenerDbHelper dbHelper = new GPSListenerDbHelper(getApplicationContext());
 		Object params[] = {value, dbHelper};
 		new DatabaseTask().execute(params);
+	}
+	
+	public void onDateSelected(String selectedDate)
+	{
+		
 	}
 	
 	public class gpslistenerLocationListener implements LocationListener {
