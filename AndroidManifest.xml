@@ -33,6 +33,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.gpslistener.MainActivity" />
         </activity>
+        <service
+            android:name ="com.gpslistener.helpers.GPSListenerService"
+            android:exported="false"/>
     </application>
 
 </manifest>
