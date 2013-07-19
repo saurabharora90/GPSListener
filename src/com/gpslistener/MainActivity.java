@@ -82,7 +82,7 @@ public class MainActivity extends Activity implements AsyncResponse, OnDateSelec
 			Intent intent = new Intent(getApplicationContext(), FetchLocationService.class);
 			intent.putExtra("com.gpslistener.locationData", locationDataBundle);
 			startService(intent);*/
-			new HttpFetchLocationTask().execute(Constants.getNEARBY_SEARCH_URI(lat, lon, "false", 100));
+			new HttpFetchLocationTask().execute(Constants.getNEARBY_SEARCH_URI(lat, lon, "true", 100));
 		}
 
 		@Override

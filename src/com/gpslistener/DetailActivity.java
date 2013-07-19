@@ -23,8 +23,8 @@ public class DetailActivity extends Activity {
 		getFragmentManager().beginTransaction().add(android.R.id.content, fragment).commit();
 		setTitle(selectedDate);
 		//setContentView(R.layout.activity_detail);
-		// Show the Up button in the action bar.
-		//setupActionBar();
+		 //Show the Up button in the action bar.
+		setupActionBar();
 	}
 
 	/**

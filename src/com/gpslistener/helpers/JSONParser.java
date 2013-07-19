@@ -49,6 +49,7 @@ public class JSONParser
 		} 
 		catch (JSONException e) 
 		{
+			response.setName("Request denied by Google API");
 			e.printStackTrace();
 		}
 		return response;
