@@ -40,6 +40,5 @@ public class HttpFetchLocationTask extends AsyncTask<String, Void, JSONObject> {
 	protected void onPostExecute(JSONObject jsonObject)
 	{
 		delegate.onTaskCompleted(JSONParser.parseJSON(jsonObject));
-		//GeoCodingAPI_Response response = JSONParser.parseJSON(jsonObject);
 	}
 }
