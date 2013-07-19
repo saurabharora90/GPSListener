@@ -38,7 +38,7 @@ public class DatabaseTask extends AsyncTask<Object, Void, Void> {
 		mDatabase.insert(GPSListenerContract.StoredLocations.Table_Name, "null", vContentValues);
 		
 		//acquire reference and close database. Acquire reference as it was passed as a param
-		//mDatabase.close();
+		mDatabase.close();
 		return null;
 	}
 

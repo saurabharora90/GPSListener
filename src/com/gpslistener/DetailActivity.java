@@ -10,18 +10,16 @@ import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
 
 public class DetailActivity extends Activity {
+	
+	private String selectedDate;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
 		Intent intent = getIntent();
-		String selectedDate = intent.getStringExtra("date");
+		selectedDate = intent.getStringExtra("date");
 		
-		ShowDateDetailsFragment fragment = new ShowDateDetailsFragment();
-		fragment.setSelectedDate(selectedDate);
-		getFragmentManager().beginTransaction().add(android.R.id.content, fragment).commit();
-		setTitle(selectedDate);
 		//setContentView(R.layout.activity_detail);
 		 //Show the Up button in the action bar.
 		setupActionBar();
@@ -31,18 +29,10 @@ public class DetailActivity extends Activity {
 	protected void onStart()
 	{
 		super.onStart();
-	}
-	
-	@Override
-	protected void onRestart()
-	{
-		super.onRestart();
-	}
-	
-	@Override
-	protected void onPause ()
-	{
-		super.onPause();
+		ShowDateDetailsFragment fragment = new ShowDateDetailsFragment();
+		fragment.setSelectedDate(selectedDate);
+		getFragmentManager().beginTransaction().add(android.R.id.content, fragment).commit();
+		setTitle(selectedDate);
 	}
 
 	/**
