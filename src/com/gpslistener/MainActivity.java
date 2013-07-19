@@ -18,7 +18,6 @@ public class MainActivity extends Activity implements AsyncResponse, OnDateSelec
 	
 	private LocationManager manager;
 	private gpslistenerLocationListener listener = new gpslistenerLocationListener();
-	HttpFetchLocationTask fetchLocationTask = new HttpFetchLocationTask();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +26,7 @@ public class MainActivity extends Activity implements AsyncResponse, OnDateSelec
 		manager = (LocationManager) getSystemService(LOCATION_SERVICE);
 		
 		//To register the listener to be call backed when the Async Task returns data
-		fetchLocationTask.delegate = this;
+		HttpFetchLocationTask.delegate = this;
 	}
 
 	@Override
@@ -83,7 +82,7 @@ public class MainActivity extends Activity implements AsyncResponse, OnDateSelec
 			Intent intent = new Intent(getApplicationContext(), FetchLocationService.class);
 			intent.putExtra("com.gpslistener.locationData", locationDataBundle);
 			startService(intent);*/
-			fetchLocationTask.execute(Constants.getNEARBY_SEARCH_URI(lat, lon, "false", 100));
+			new HttpFetchLocationTask().execute(Constants.getNEARBY_SEARCH_URI(lat, lon, "false", 100));
 		}
 
 		@Override

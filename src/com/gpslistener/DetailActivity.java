@@ -21,7 +21,7 @@ public class DetailActivity extends Activity {
 		ShowDateDetailsFragment fragment = new ShowDateDetailsFragment();
 		fragment.setSelectedDate(selectedDate);
 		getFragmentManager().beginTransaction().add(android.R.id.content, fragment).commit();
-		
+		setTitle(selectedDate);
 		//setContentView(R.layout.activity_detail);
 		// Show the Up button in the action bar.
 		//setupActionBar();

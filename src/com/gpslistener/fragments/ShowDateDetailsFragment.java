@@ -54,9 +54,9 @@ public class ShowDateDetailsFragment extends Fragment
 		String where = GPSListenerContract.StoredLocations.COLUMN_NAME_DATE_STRING + "=?";
 		
 		Cursor cursor = mDatabase.query(GPSListenerContract.StoredLocations.Table_Name, projection, where, new String[] {selectedDate}, null, null, null);
-		//cursor.moveToFirst();
-		//String data = cursor.getString(2);
-		SimpleCursorAdapter cursorAdapter = new SimpleCursorAdapter(getActivity(), android.R.layout.simple_list_item_1, cursor, projection, new int [] {android.R.id.text1, android.R.id.text1, android.R.id.text1}, 0);
+		String from[] = {GPSListenerContract.StoredLocations.COLUMN_NAME_TIME_STRING, GPSListenerContract.StoredLocations.COLUMN_NAME_LocationDetail};
+		int to[] = {R.id.time, R.id.location};
+		SimpleCursorAdapter cursorAdapter = new SimpleCursorAdapter(getActivity(), R.layout.listview_customstyle, cursor, from, to, 0);
 	    ListView myListView = (ListView) view.findViewById(R.id.detailsListview);
 	    myListView.setAdapter(cursorAdapter);
 	    

@@ -14,7 +14,7 @@ import android.os.AsyncTask;
 
 public class HttpFetchLocationTask extends AsyncTask<String, Void, JSONObject> {
 
-	public AsyncResponse delegate = null;
+	public static AsyncResponse delegate = null;
 	
 	@Override
 	protected JSONObject doInBackground(String... params)
