@@ -36,6 +36,9 @@ public class DatabaseTask extends AsyncTask<Object, Void, Void> {
 		vContentValues.put(GPSListenerContract.StoredLocations.COLUMN_NAME_DATE_STRING, formattedDate);
 		vContentValues.put(GPSListenerContract.StoredLocations.COLUMN_NAME_TIME_STRING, formattedTime);
 		mDatabase.insert(GPSListenerContract.StoredLocations.Table_Name, "null", vContentValues);
+		
+		//acquire reference and close database. Acquire reference as it was passed as a param
+		//mDatabase.close();
 		return null;
 	}
 

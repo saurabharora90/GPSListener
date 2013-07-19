@@ -26,6 +26,24 @@ public class DetailActivity extends Activity {
 		 //Show the Up button in the action bar.
 		setupActionBar();
 	}
+	
+	@Override
+	protected void onStart()
+	{
+		super.onStart();
+	}
+	
+	@Override
+	protected void onRestart()
+	{
+		super.onRestart();
+	}
+	
+	@Override
+	protected void onPause ()
+	{
+		super.onPause();
+	}
 
 	/**
 	 * Set up the {@link android.app.ActionBar}.

@@ -50,15 +50,19 @@ public class ShowDateDetailsFragment extends Fragment
 		//read from database
 	    GPSListenerDbHelper dbHelper = new GPSListenerDbHelper(getActivity());
 	    SQLiteDatabase mDatabase = dbHelper.getReadableDatabase();
-		String projection[] = {GPSListenerContract.StoredLocations._ID, GPSListenerContract.StoredLocations.COLUMN_NAME_TIME_STRING, GPSListenerContract.StoredLocations.COLUMN_NAME_LocationDetail};
+		String projection[] = {GPSListenerContract.StoredLocations._ID, GPSListenerContract.StoredLocations.COLUMN_NAME_TIME_STRING, GPSListenerContract.StoredLocations.COLUMN_NAME_LocationDetail, GPSListenerContract.StoredLocations.COLUMN_NAME_Latitude, GPSListenerContract.StoredLocations.COLUMN_NAME_Longitude};
 		String where = GPSListenerContract.StoredLocations.COLUMN_NAME_DATE_STRING + "=?";
 		
 		Cursor cursor = mDatabase.query(GPSListenerContract.StoredLocations.Table_Name, projection, where, new String[] {selectedDate}, null, null, null);
-		String from[] = {GPSListenerContract.StoredLocations.COLUMN_NAME_TIME_STRING, GPSListenerContract.StoredLocations.COLUMN_NAME_LocationDetail};
-		int to[] = {R.id.time, R.id.location};
+		String from[] = {GPSListenerContract.StoredLocations.COLUMN_NAME_TIME_STRING, GPSListenerContract.StoredLocations.COLUMN_NAME_LocationDetail, GPSListenerContract.StoredLocations.COLUMN_NAME_Latitude, GPSListenerContract.StoredLocations.COLUMN_NAME_Longitude};
+		int to[] = {R.id.time, R.id.location, R.id.lat, R.id.lon};
 		SimpleCursorAdapter cursorAdapter = new SimpleCursorAdapter(getActivity(), R.layout.listview_customstyle, cursor, from, to, 0);
 	    ListView myListView = (ListView) view.findViewById(R.id.detailsListview);
 	    myListView.setAdapter(cursorAdapter);
+	    
+	    //close the cursor and database.
+	    //cursor.close();
+	    mDatabase.close();
 	    
 		return view;
 	}

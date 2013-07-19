@@ -16,6 +16,8 @@ public class GPSListenerService extends Service implements AsyncResponse {
 	private LocationManager manager;
 	private gpslistenerLocationListener listener = new gpslistenerLocationListener();
 	private static Boolean serviceStatus = false;; //if true then service is running
+	private static double lat;
+	private static double lon;
 
 	@Override
 	public IBinder onBind(Intent arg0) 
@@ -56,8 +58,8 @@ public class GPSListenerService extends Service implements AsyncResponse {
 
 		@Override
 		public void onLocationChanged(Location location) {
-			double lat = location.getLatitude();
-			double lon = location.getLongitude();
+			lat = location.getLatitude();
+			lon = location.getLongitude();
 			
 			Log.v("Location Service", "Location retrieved");
 			
@@ -89,5 +91,12 @@ public class GPSListenerService extends Service implements AsyncResponse {
 		new DatabaseTask().execute(params);
 	}
 
+	public static double getLat() {
+		return lat;
+	}
+
+	public static double getLon() {
+		return lon;
+	}
 
 }
