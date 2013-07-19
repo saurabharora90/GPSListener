@@ -32,10 +32,10 @@ public class GPSListenerService extends Service implements AsyncResponse {
 		
 			manager = (LocationManager) getSystemService(LOCATION_SERVICE);
 			if(manager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)){
-				manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 50, listener);
+				manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 1000, listener);
 			}
 			if(manager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
-				manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 50, listener);
+				manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 1000, listener);
 			}
 			HttpFetchLocationTask.delegate = this;
 			serviceStatus = true;
