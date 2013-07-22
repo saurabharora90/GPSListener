@@ -18,8 +18,7 @@ public class GPSListenerDbHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		db.execSQL(GPSListenerContract.CREATE_TABLE_STORED_LOCATIONS);
-		db.execSQL(GPSListenerContract.CREATE_TABLE_OFFLINE_LOCATIONS);
+		db.execSQL(GPSListenerContract.CREATE_TABLE_DETECTED_LOCATION);
 	}
 
 	@Override

@@ -14,8 +14,8 @@ public class MainActivity extends Activity implements OnDateSelectedListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		Intent intent = new Intent(this, GPSListenerService.class);
-		startService(intent);
+		Intent listenerIntent = new Intent(this, GPSListenerService.class);
+		startService(listenerIntent);
 	}
 
 	@Override
@@ -41,5 +41,9 @@ public class MainActivity extends Activity implements OnDateSelectedListener {
 		intent.putExtra("date", selectedDate);
 		startActivity(intent);
 	}
-
+	
+	public void stopGPSListenerService()
+	{
+		stopService(new Intent(this,GPSListenerService.class));
+	}
 }

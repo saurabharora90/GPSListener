@@ -43,10 +43,10 @@ public class ShowDateFragment extends Fragment {
 		//read from database
 	    GPSListenerDbHelper dbHelper = new GPSListenerDbHelper(getActivity());
 	    SQLiteDatabase mDatabase = dbHelper.getReadableDatabase();
-	    String queryString = "SELECT DISTINCT " + GPSListenerContract.StoredLocations._ID +", " + GPSListenerContract.StoredLocations.COLUMN_NAME_DATE_STRING + " FROM " + GPSListenerContract.StoredLocations.Table_Name + " GROUP BY " + GPSListenerContract.StoredLocations.COLUMN_NAME_DATE_STRING;
+	    String queryString = "SELECT DISTINCT " + GPSListenerContract.DetectedLocation._ID +", " + GPSListenerContract.DetectedLocation.COLUMN_NAME_DATE_STRING + " FROM " + GPSListenerContract.DetectedLocation.Table_Name + " GROUP BY " + GPSListenerContract.DetectedLocation.COLUMN_NAME_DATE_STRING;
 	    
 	    Cursor cursor = mDatabase.rawQuery(queryString, null);
-	    SimpleCursorAdapter cursorAdapter = new SimpleCursorAdapter(getActivity(), android.R.layout.simple_list_item_1, cursor, new String[] {GPSListenerContract.StoredLocations.COLUMN_NAME_DATE_STRING}, new int [] {android.R.id.text1}, 0);
+	    SimpleCursorAdapter cursorAdapter = new SimpleCursorAdapter(getActivity(), android.R.layout.simple_list_item_1, cursor, new String[] {GPSListenerContract.DetectedLocation.COLUMN_NAME_DATE_STRING}, new int [] {android.R.id.text1}, 0);
 	    ListView myListView = (ListView) view.findViewById(R.id.dateListview);
 	    myListView.setAdapter(cursorAdapter);
 	    

@@ -10,6 +10,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -36,6 +37,17 @@
         <service
             android:name ="com.gpslistener.helpers.GPSListenerService"
             android:exported="false"/>
+        <service
+            android:name ="com.gpslistener.helpers.OfflineLocationsResolverService"
+            android:exported="false"/>
+        
+        <receiver 
+            android:name="com.gpslistener.helpers.ConnectionChangeReceiver"
+          	android:label="NetworkConnection">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+  			</intent-filter>
+		</receiver>
     </application>
 
 </manifest>

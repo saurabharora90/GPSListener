@@ -8,25 +8,15 @@ public final class GPSListenerContract {
 	private static final String COMMA_SEP = ", ";
 	private static final String INTEGER_TYPE = " INTEGER";
 	
-	public static abstract class StoredLocations implements BaseColumns
+	public static abstract class DetectedLocation implements BaseColumns
 	{
-		public static final String Table_Name = "StoredLocations";
+		public static final String Table_Name = "DetectedLocation";
 		public static final String COLUMN_NAME_TIME_STRING = "Time";
 		public static final String COLUMN_NAME_DATE_STRING = "Date";
-		public static final String COLUMN_NAME_Latitude = "Latitude";
-		public static final String COLUMN_NAME_Longitude = "Longitude";
-		public static final String COLUMN_NAME_LocationDetail = "LocationDetails";
+		public static final String COLUMN_NAME_LATITUDE = "Latitude";
+		public static final String COLUMN_NAME_LONGITUDE = "Longitude";
+		public static final String COLUMN_NAME_LOCATION_DETAIL = "Detail";
 	}
 	
-	public static abstract class OfflineLocations implements BaseColumns
-	{
-		public static final String Table_Name = "OfflineLocations";
-		public static final String COLUMN_NAME_TIME_STRING = "Time";
-		public static final String COLUMN_NAME_DATE_STRING = "Date";
-		public static final String COLUMN_NAME_Latitude = "Latitude";
-		public static final String COLUMN_NAME_Longitude = "Longitude";
-	}
-	
-	public static final String CREATE_TABLE_STORED_LOCATIONS = "CREATE TABLE " + StoredLocations.Table_Name + " ( " + StoredLocations._ID + INTEGER_TYPE + " PRIMARY KEY" + COMMA_SEP + StoredLocations.COLUMN_NAME_TIME_STRING + TEXT_TYPE + COMMA_SEP + StoredLocations.COLUMN_NAME_DATE_STRING +TEXT_TYPE +COMMA_SEP + StoredLocations.COLUMN_NAME_Latitude + TEXT_TYPE + COMMA_SEP + StoredLocations.COLUMN_NAME_Longitude + TEXT_TYPE + COMMA_SEP + StoredLocations.COLUMN_NAME_LocationDetail + TEXT_TYPE +" )";
-	public static final String CREATE_TABLE_OFFLINE_LOCATIONS = "CREATE TABLE " + OfflineLocations.Table_Name + " ( " + OfflineLocations._ID + INTEGER_TYPE + " PRIMARY KEY" + COMMA_SEP + OfflineLocations.COLUMN_NAME_TIME_STRING + TEXT_TYPE + COMMA_SEP + StoredLocations.COLUMN_NAME_DATE_STRING +TEXT_TYPE +COMMA_SEP + OfflineLocations.COLUMN_NAME_Latitude + TEXT_TYPE + COMMA_SEP + StoredLocations.COLUMN_NAME_Longitude + TEXT_TYPE + " )";
+	public static final String CREATE_TABLE_DETECTED_LOCATION = "CREATE TABLE " + DetectedLocation.Table_Name + " ( " + DetectedLocation._ID + INTEGER_TYPE + " PRIMARY KEY" + COMMA_SEP + DetectedLocation.COLUMN_NAME_TIME_STRING + TEXT_TYPE + COMMA_SEP + DetectedLocation.COLUMN_NAME_DATE_STRING +TEXT_TYPE +COMMA_SEP + DetectedLocation.COLUMN_NAME_LATITUDE + TEXT_TYPE + COMMA_SEP + DetectedLocation.COLUMN_NAME_LONGITUDE + TEXT_TYPE + COMMA_SEP + DetectedLocation.COLUMN_NAME_LOCATION_DETAIL + TEXT_TYPE + " )";
 }

@@ -30,8 +30,6 @@ public class GPSListenerService extends Service implements AsyncResponse {
 	{
 		if(serviceStatus == false)
 		{
-			Log.v("Service", "Service Started");
-		
 			manager = (LocationManager) getSystemService(LOCATION_SERVICE);
 			if(manager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)){
 				manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 1000, listener);
@@ -42,6 +40,8 @@ public class GPSListenerService extends Service implements AsyncResponse {
 			HttpFetchLocationTask.delegate = this;
 			serviceStatus = true;
 		}
+		
+		Log.v("GPSListenerService", "Service Started");
 		return START_STICKY;
 	}
 	
@@ -62,8 +62,8 @@ public class GPSListenerService extends Service implements AsyncResponse {
 			lon = location.getLongitude();
 			
 			Log.v("Location Service", "Location retrieved");
-			
-			new HttpFetchLocationTask().execute(Constants.getNEARBY_SEARCH_URI(lat, lon, "true", 100));
+			int id = -1; //no id to be passed as this is not an update database time.
+			new HttpFetchLocationTask().execute( Constants.getNEARBY_SEARCH_URI(lat, lon, "true", 100), String.valueOf(id));
 		}
 
 		@Override
@@ -88,7 +88,7 @@ public class GPSListenerService extends Service implements AsyncResponse {
 	{
 		GPSListenerDbHelper dbHelper = new GPSListenerDbHelper(getApplicationContext());
 		Object params[] = {value, dbHelper};
-		new DatabaseTask().execute(params);
+		new DatabaseWritingTask().execute(params);
 	}
 
 	public static double getLat() {

@@ -49,10 +49,9 @@ public class JSONParser
 		} 
 		catch (JSONException e) 
 		{
-			response.setName("Request denied by Google API");
-			response.setLatitude(String.valueOf(GPSListenerService.getLat()));
-			response.setLongitude(String.valueOf(GPSListenerService.getLon()));
+			//only required because of limited API access as this is under trial mode.
 			e.printStackTrace();
+			return null;
 		}
 		return response;
 	}
