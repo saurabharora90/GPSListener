@@ -20,7 +20,7 @@ public class ConnectionChangeReceiver extends BroadcastReceiver
 	      final android.net.NetworkInfo mobile = connMgr
 	              .getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
 	      
-	      Intent offlineServiceIntent = new Intent(context, com.gpslistener.helpers.OfflineLocationsResolverService.class);
+	      Intent offlineServiceIntent = new Intent(context, com.gpslistener.services.OfflineLocationsResolverService.class);
 	      
 	      if (wifi.isAvailable() || mobile.isAvailable()) 
 	      {

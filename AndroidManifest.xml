@@ -35,10 +35,10 @@
                 android:value="com.gpslistener.MainActivity" />
         </activity>
         <service
-            android:name ="com.gpslistener.helpers.GPSListenerService"
+            android:name ="com.gpslistener.services.GPSListenerService"
             android:exported="false"/>
         <service
-            android:name ="com.gpslistener.helpers.OfflineLocationsResolverService"
+            android:name ="com.gpslistener.services.OfflineLocationsResolverService"
             android:exported="false"/>
         
         <receiver 

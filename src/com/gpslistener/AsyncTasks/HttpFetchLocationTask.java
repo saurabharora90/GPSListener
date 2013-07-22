@@ -1,4 +1,4 @@
-package com.gpslistener.helpers;
+package com.gpslistener.AsyncTasks;
 
 import java.util.ArrayList;
 
@@ -15,6 +15,7 @@ import org.apache.http.protocol.HttpContext;
 import org.json.JSONObject;
 
 import com.gpslistener.AsyncResponse;
+import com.gpslistener.helpers.JSONParser;
 import com.gpslistener.models.GeoCodingAPI_Response;
 
 import android.os.AsyncTask;
@@ -24,7 +25,7 @@ public class HttpFetchLocationTask extends AsyncTask<String, Void, Object> {
 
 	public static AsyncResponse delegate = null;
 	public String id;
-	
+
 	@Override
 	protected JSONObject doInBackground(String... params)
 	{
@@ -39,7 +40,7 @@ public class HttpFetchLocationTask extends AsyncTask<String, Void, Object> {
 		int timeoutSocket = 5000;
 		HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
 		HttpClient httpClient = new DefaultHttpClient(httpParameters);
-		
+
 		HttpContext localContext = new BasicHttpContext();
 		HttpGet httpGet = new HttpGet(params[0]);
 		JSONObject json = null;
@@ -55,10 +56,10 @@ public class HttpFetchLocationTask extends AsyncTask<String, Void, Object> {
 			Log.v("HttpFetchLocationTask", "No data received");
 			return null;
 		}
-		
+
 		return json;
 	}
-	
+
 	@Override
 	protected void onPostExecute(Object dataReceived)
 	{
@@ -75,6 +76,6 @@ public class HttpFetchLocationTask extends AsyncTask<String, Void, Object> {
 			params.add(id);
 			delegate.onTaskCompleted(params);
 		}
-		
+
 	}
 }

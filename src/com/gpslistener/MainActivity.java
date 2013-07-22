@@ -1,7 +1,7 @@
 package com.gpslistener;
 
 import com.gpslistener.fragments.ShowDateFragment.OnDateSelectedListener;
-import com.gpslistener.helpers.GPSListenerService;
+import com.gpslistener.services.GPSListenerService;
 
 import android.os.Bundle;
 import android.app.Activity;
