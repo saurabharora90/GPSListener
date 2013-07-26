@@ -48,6 +48,12 @@
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
   			</intent-filter>
 		</receiver>
+		
+        <provider 
+		   android:name=".models.DetectedLocationsProvider"
+		   android:authorities="com.gpslistener.provider" 
+		/>
+        
     </application>
 
 </manifest>
