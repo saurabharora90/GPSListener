@@ -10,6 +10,7 @@ import com.gpslistener.helpers.Constants;
 import com.gpslistener.models.GeoCodingAPI_Response;
 
 import android.app.Service;
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -57,8 +58,8 @@ public class OfflineLocationsResolverService extends Service implements AsyncRes
 	@Override
 	public void onTaskCompleted(Object values) 
 	{
-		GPSListenerDbHelper dbHelper = new GPSListenerDbHelper(getApplicationContext());
-		SQLiteDatabase mDatabase = dbHelper.getWritableDatabase();
+		//GPSListenerDbHelper dbHelper = new GPSListenerDbHelper(getApplicationContext());
+		//SQLiteDatabase mDatabase = dbHelper.getWritableDatabase();
 				
 		ContentValues vContentValues = new ContentValues();
 		ArrayList<Object> params = (ArrayList<Object>) values;
@@ -66,8 +67,10 @@ public class OfflineLocationsResolverService extends Service implements AsyncRes
 		vContentValues.put(GPSListenerContract.DetectedLocation.COLUMN_NAME_LOCATION_DETAIL, response.getName());
 		
 		String where = GPSListenerContract.DetectedLocation._ID + "=?";
-		mDatabase.update(GPSListenerContract.DetectedLocation.Table_Name, vContentValues, where, new String[]{ params.get(1).toString() });
-		mDatabase.close();
+		//mDatabase.update(GPSListenerContract.DetectedLocation.Table_Name, vContentValues, where, new String[]{ params.get(1).toString() });
+		//mDatabase.close();
+		ContentResolver resolver = getContentResolver();
+		resolver.update(GPSListenerContract.CONTENT_URI, vContentValues, where, new String[]{ params.get(1).toString()});
 		Log.v("OfflineLocationService", "Database update successful");
 	}
 }
