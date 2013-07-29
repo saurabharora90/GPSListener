@@ -1,18 +1,25 @@
 package com.gpslistener.services;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+
 import com.gpslistener.AsyncResponse;
-import com.gpslistener.AsyncTasks.DatabaseWritingTask;
 import com.gpslistener.AsyncTasks.HttpFetchLocationTask;
-import com.gpslistener.database.GPSListenerDbHelper;
+import com.gpslistener.database.GPSListenerContract;
 import com.gpslistener.helpers.Constants;
+import com.gpslistener.models.GeoCodingAPI_Response;
 
 import android.app.Service;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.provider.UserDictionary;
 import android.util.Log;
 
 public class GPSListenerService extends Service implements AsyncResponse {
@@ -90,9 +97,34 @@ public class GPSListenerService extends Service implements AsyncResponse {
 	@Override
 	public void onTaskCompleted(Object value) 
 	{
-		GPSListenerDbHelper dbHelper = new GPSListenerDbHelper(getApplicationContext());
-		Object params[] = {value, dbHelper};
-		new DatabaseWritingTask().execute(params);
+		ContentResolver resolver = getApplicationContext().getContentResolver();
+		ContentValues vContentValues = new ContentValues();
+
+		//get date and time.
+		Calendar c = Calendar.getInstance();
+
+		SimpleDateFormat df1 = new SimpleDateFormat("dd-MM-yyyy");
+		String formattedDate = df1.format(c.getTime());
+
+		SimpleDateFormat df2 = new SimpleDateFormat("kk:mm:ss");
+		String formattedTime = df2.format(c.getTime());
+
+	    vContentValues.put(GPSListenerContract.DetectedLocation.COLUMN_NAME_LATITUDE, GPSListenerService.getLat());
+		vContentValues.put(GPSListenerContract.DetectedLocation.COLUMN_NAME_LONGITUDE, GPSListenerService.getLon());
+		vContentValues.put(GPSListenerContract.DetectedLocation.COLUMN_NAME_DATE_STRING, formattedDate);
+		vContentValues.put(GPSListenerContract.DetectedLocation.COLUMN_NAME_TIME_STRING, formattedTime);
+
+
+		if(value!=null)
+		{
+			ArrayList<Object> params = (ArrayList<Object>) value;
+			GeoCodingAPI_Response response = (GeoCodingAPI_Response) params.get(0);
+			vContentValues.put(GPSListenerContract.DetectedLocation.COLUMN_NAME_LOCATION_DETAIL, response.getName());
+		}
+		
+		resolver.insert(GPSListenerContract.CONTENT_URI, vContentValues);
+		
+		Log.v("Database write", "Database write successful");
 	}
 
 	public static double getLat() {
