@@ -4,8 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import com.gpslistener.helpers.GPSListenerDbHelper;
-import com.gpslistener.models.GPSListenerContract;
+import com.gpslistener.database.GPSListenerContract;
+import com.gpslistener.database.GPSListenerDbHelper;
 import com.gpslistener.models.GeoCodingAPI_Response;
 import com.gpslistener.services.GPSListenerService;
 

@@ -1,4 +1,4 @@
-package com.gpslistener.models;
+package com.gpslistener.database;
 
 import android.content.ContentResolver;
 import android.net.Uri;

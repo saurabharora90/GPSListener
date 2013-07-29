@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 import com.gpslistener.AsyncResponse;
 import com.gpslistener.AsyncTasks.HttpFetchLocationTask;
+import com.gpslistener.database.GPSListenerContract;
+import com.gpslistener.database.GPSListenerDbHelper;
 import com.gpslistener.helpers.Constants;
-import com.gpslistener.helpers.GPSListenerDbHelper;
-import com.gpslistener.models.GPSListenerContract;
 import com.gpslistener.models.GeoCodingAPI_Response;
 
 import android.app.Service;

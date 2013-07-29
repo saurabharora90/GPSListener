@@ -1,6 +1,4 @@
-package com.gpslistener.models;
-
-import com.gpslistener.helpers.GPSListenerDbHelper;
+package com.gpslistener.database;
 
 import android.content.ContentProvider;
 import android.content.ContentUris;

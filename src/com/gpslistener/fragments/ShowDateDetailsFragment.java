@@ -1,8 +1,8 @@
 package com.gpslistener.fragments;
 
 import com.gpslistener.R;
-import com.gpslistener.helpers.GPSListenerDbHelper;
-import com.gpslistener.models.GPSListenerContract;
+import com.gpslistener.database.GPSListenerContract;
+import com.gpslistener.database.GPSListenerDbHelper;
 
 import android.app.Fragment;
 import android.database.Cursor;

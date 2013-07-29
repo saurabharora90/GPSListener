@@ -1,4 +1,4 @@
-package com.gpslistener.helpers;
+package com.gpslistener.services;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

@@ -3,8 +3,8 @@ package com.gpslistener.services;
 import com.gpslistener.AsyncResponse;
 import com.gpslistener.AsyncTasks.DatabaseWritingTask;
 import com.gpslistener.AsyncTasks.HttpFetchLocationTask;
+import com.gpslistener.database.GPSListenerDbHelper;
 import com.gpslistener.helpers.Constants;
-import com.gpslistener.helpers.GPSListenerDbHelper;
 
 import android.app.Service;
 import android.content.Intent;

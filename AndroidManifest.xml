@@ -42,7 +42,7 @@
             android:exported="false"/>
         
         <receiver 
-            android:name="com.gpslistener.helpers.ConnectionChangeReceiver"
+            android:name="com.gpslistener.services.ConnectionChangeReceiver"
           	android:label="NetworkConnection">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
@@ -50,7 +50,7 @@
 		</receiver>
 		
         <provider 
-		   android:name=".models.DetectedLocationsProvider"
+		   android:name="com.gpslistener.database.DetectedLocationsProvider"
 		   android:authorities="com.gpslistener.provider" 
 		/>
         

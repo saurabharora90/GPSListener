@@ -1,6 +1,5 @@
-package com.gpslistener.helpers;
+package com.gpslistener.database;
 
-import com.gpslistener.models.GPSListenerContract;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
