@@ -11,7 +11,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 
-public class DetecedLocationsProvider extends ContentProvider {
+public class DetectedLocationsProvider extends ContentProvider {
 	
 	protected SQLiteDatabase mDatabase;
 	GPSListenerDbHelper dbHelper;
